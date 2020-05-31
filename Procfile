@@ -1,1 +1,1 @@
-python publish.py
+worker: python publish.py
