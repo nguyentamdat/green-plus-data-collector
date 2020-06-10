@@ -10,7 +10,7 @@ def on_message(client, userdata, message):
     global mycol
     #print(mycol)
     y = json.loads(messages)
-    current_time = datetime.datetime.utcnow().isoformat()
+    current_time = datetime.datetime.now()
     if str(message.topic)[-1] == str(5):
         name = "Temperature and atmosphere moisture"
     elif str(message.topic)[-1] == str(6):
