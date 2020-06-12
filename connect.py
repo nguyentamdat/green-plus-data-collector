@@ -9,7 +9,7 @@ def on_message(client, userdata, message):
     print(messages)
     global mycol
     #print(mycol)
-    y = json.loads(messages)
+    y = json.loads(messages)[0]
     current_time = datetime.datetime.now()
     if str(message.topic)[-1] == str(5):
         name = "Temperature and atmosphere moisture"
@@ -18,8 +18,8 @@ def on_message(client, userdata, message):
     elif str(message.topic)[-1] == str(7):
         name = "Soil moisture"
     myquery = {"id": y["device_id"]}
-    newvalue = {"$push": {"log":{"value" : y["value"],"time": current_time}}}
-    mycol.update_one(myquery, newvalue)
+    newvalue = {"$push": {"log":{"values" : y["values"],"time": current_time}}}
+    print(mycol.update_one(myquery, newvalue))
     #print(1)
     # cursor = mydb.devices.find() 
     # for record in cursor: 
