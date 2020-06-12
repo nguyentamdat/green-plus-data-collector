@@ -11,19 +11,9 @@ def on_message(client, userdata, message):
     #print(mycol)
     y = json.loads(messages)[0]
     current_time = datetime.datetime.now()
-    if str(message.topic)[-1] == str(5):
-        name = "Temperature and atmosphere moisture"
-    elif str(message.topic)[-1] == str(6):
-        name = "Light Intensity"
-    elif str(message.topic)[-1] == str(7):
-        name = "Soil moisture"
     myquery = {"id": y["device_id"]}
     newvalue = {"$push": {"log":{"values" : y["values"],"time": current_time}}}
     print(mycol.update_one(myquery, newvalue))
-    #print(1)
-    # cursor = mydb.devices.find() 
-    # for record in cursor: 
-    #     print(record) 
 
 
 def on_subscribe(client, userdata, mid, granted_qos):
